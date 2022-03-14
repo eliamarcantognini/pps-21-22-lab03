@@ -15,11 +15,6 @@ object List extends App:
       case Cons(h, t) => h + sum(t)
       case _ => 0
 
-    def map[A, B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(a => Cons(mapper(a), Nil()))
-
-    def filter[A](l: List[A])(pred: A => Boolean): List[A] = 
-      flatMap(l)(a => if (pred(a)) Cons(a, Nil()) else Nil())
-
     @tailrec
     def drop[A](l: List[A], n: Int): List[A] = l match
       case Cons(h, t) if n > 0 => drop(t, n-1)
@@ -34,7 +29,7 @@ object List extends App:
       case Cons(h, t) => append(f(h), flatMap(t)(f))
       case _ => Nil()
 
+    def map[A, B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(a => Cons(mapper(a), Nil()))
 
-
-
-
+    def filter[A](l: List[A])(pred: A => Boolean): List[A] =
+      flatMap(l)(a => if (pred(a)) Cons(a, Nil()) else Nil())
