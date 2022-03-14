@@ -21,3 +21,9 @@ class ListTest:
     assertEquals(l, append(Nil(), l))
     assertEquals(l, append(l, Nil()))
     assertEquals(Cons(10, Cons(20, Cons(30, Cons(40, Nil())))), append(l, Cons(40, Nil())))
+
+  @Test
+  def testFlatMap(): Unit =
+    val l1: List[Int] = Cons(11, Cons(12, Cons(21, Cons(22, Cons(31, Cons(32, Nil()))))))
+    assertEquals(Cons(11, Cons(21, Cons(31, Nil()))), flatMap(l)(v => Cons(v + 1, Nil())))
+    assertEquals(l1, flatMap(l)(v => Cons(v + 1, Cons(v + 2, Nil()))))
