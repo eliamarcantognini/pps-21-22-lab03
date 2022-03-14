@@ -44,7 +44,4 @@ object List extends App:
       case Nil() => None
 
     def getCoursesFromPersons(persons: List[Person]): List[String] =
-      flatMap(persons) {
-        case Teacher(n, c) => Cons(c, Nil())
-        case _ => Nil()
-      }
+      flatMap(persons){case Teacher(n, c) => Cons(c, Nil()); case _ => Nil()}
