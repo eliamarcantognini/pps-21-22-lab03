@@ -37,9 +37,10 @@ class ListTest:
   def testFilter(): Unit =
     assertEquals(Cons(20, Cons(30, Nil())), filter(l)(_ >= 20))
     assertEquals(Cons(10, Cons(30, Nil())), filter(l)(_ != 20))
-    
+
   @Test
   def testMax(): Unit =
     assertEquals(Some(25), max(Cons(10, Cons(25, Cons(20, Nil())))))
     assertEquals(None, max(Nil()))
-  
+    assertEquals(Some(30), max(l))
+    assertEquals(Some(73), max(append(Cons(73, Nil()), l)))
