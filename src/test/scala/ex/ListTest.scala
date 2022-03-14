@@ -3,6 +3,8 @@ package ex
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import List.*
+import u02.AlgebraicDataTypes.Person
+import u02.AlgebraicDataTypes.Person.*
 
 class ListTest:
   import List.*
@@ -44,3 +46,12 @@ class ListTest:
     assertEquals(None, max(Nil()))
     assertEquals(Some(30), max(l))
     assertEquals(Some(73), max(append(Cons(73, Nil()), l)))
+
+  @Test
+  def testGetCoursesFromPersons(): Unit =
+    val persons: List[Person] = Cons(Teacher("Mario", "IT"),
+      Cons(Teacher("Luca", "PPS"), Cons(Teacher("Piero", "PCD"),
+        Nil())))
+    val courses: List[String] = Cons("IT", Cons("PPS", Cons("PCD", Nil())))
+    assertEquals(courses, getCoursesFromPersons(persons))
+    assertEquals(drop(courses, 1), getCoursesFromPersons(drop(persons, 1)))

@@ -1,5 +1,8 @@
 package ex
 
+import u02.AlgebraicDataTypes.Person
+import u02.AlgebraicDataTypes.Person.*
+
 import scala.annotation.tailrec
 
 object List extends App:
@@ -39,3 +42,9 @@ object List extends App:
         case Some(a)  if a > h => Some(a)
         case _ => Some(h)
       case Nil() => None
+
+    def getCoursesFromPersons(persons: List[Person]): List[String] =
+      flatMap(persons) {
+        case Teacher(n, c) => Cons(c, Nil())
+        case _ => Nil()
+      }
