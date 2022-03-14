@@ -32,3 +32,8 @@ object List extends App:
       case Cons(h, t) => Cons(h, t)
       case Nil() => Nil()
 
+    def append[A](left: List[A], right: List[A]): List[A] = (left, right) match
+      case (Cons(h, t), right) => Cons(h, append(t, right))
+      case _ => right
+
+
