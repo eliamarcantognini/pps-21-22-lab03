@@ -15,9 +15,7 @@ object List extends App:
       case Cons(h, t) => h + sum(t)
       case _ => 0
 
-    def map[A, B](l: List[A])(mapper: A => B): List[B] = l match
-      case Cons(h, t) => Cons(mapper(h), map(t)(mapper))
-      case Nil() => Nil()
+    def map[A, B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(a => Cons(mapper(a), Nil()))
 
     def filter[A](l1: List[A])(pred: A => Boolean): List[A] = l1 match
       case Cons(h, t) if pred(h) => Cons(h, filter(t)(pred))
@@ -37,7 +35,8 @@ object List extends App:
     def flatMap[A, B](l: List[A])(f: A => List[B]): List[B] = l match
       case Cons(h, t) => append(f(h), flatMap(t)(f))
       case _ => Nil()
-      
-    
+
+
+
 
 
