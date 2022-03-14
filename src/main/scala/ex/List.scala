@@ -17,10 +17,8 @@ object List extends App:
 
     def map[A, B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(a => Cons(mapper(a), Nil()))
 
-    def filter[A](l1: List[A])(pred: A => Boolean): List[A] = l1 match
-      case Cons(h, t) if pred(h) => Cons(h, filter(t)(pred))
-      case Cons(_, t) => filter(t)(pred)
-      case Nil() => Nil()
+    def filter[A](l: List[A])(pred: A => Boolean): List[A] = 
+      flatMap(l)(a => if (pred(a)) Cons(a, Nil()) else Nil())
 
     @tailrec
     def drop[A](l: List[A], n: Int): List[A] = l match
