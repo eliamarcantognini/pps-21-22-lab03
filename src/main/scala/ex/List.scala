@@ -1,5 +1,7 @@
 package ex
 
+import scala.annotation.tailrec
+
 object List extends App:
 
   // A generic linkedlist
@@ -22,9 +24,11 @@ object List extends App:
       case Cons(_, t) => filter(t)(pred)
       case Nil() => Nil()
 
+    @tailrec
     def drop[A](l: List[A], n: Int): List[A] = l match
       case Cons(h, t) if n > 0 => t match
         case Cons(h1, t1) => drop(Cons(h1, t1), n - 1)
         case Nil() => Nil()
       case Cons(h, t) => Cons(h, t)
+      case Nil() => Nil()
 
