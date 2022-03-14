@@ -33,3 +33,10 @@ object List extends App:
 
     def filter[A](l: List[A])(pred: A => Boolean): List[A] =
       flatMap(l)(a => if (pred(a)) Cons(a, Nil()) else Nil())
+
+    def max(l: List[Int]): Option[Int] = l match
+      case Cons(h: Int, Nil()) => Some(h)
+      case Cons(h, t) => max(t) match
+        case Some(a)  if a > h => Some(a)
+        case _ => Some(h)
+      case Nil() => None
