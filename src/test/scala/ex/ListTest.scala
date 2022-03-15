@@ -60,3 +60,8 @@ class ListTest:
   def testFoldLeft(): Unit =
     assertEquals(-60, foldLeft(l)(0)(_ - _))
     assertEquals(1, foldLeft(Nil())(1)(_))
+
+  @Test
+  def testFoldRight(): Unit =
+    assertEquals(20, foldRight(l)(0)(_ - _))
+    assertEquals(1, foldRight(Nil())(1)(_))
