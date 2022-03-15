@@ -20,3 +20,8 @@ class StreamTest:
   def testConstant(): Unit =
     val s1 = Cons("x", Cons("x", Cons("x", Cons("x", Cons("x", Nil())))))
     assertEquals(s1, Stream.toList(Stream.take(constant("x"))(5)))
+
+  @Test
+  def testFib(): Unit =
+    val s1 = Cons(0, Cons(1, Cons(1, Cons(2, Cons(3, Cons(5, Cons(8, Cons(13 , Nil()))))))))
+    assertEquals(s1, Stream.toList(Stream.take(fib())(8)))

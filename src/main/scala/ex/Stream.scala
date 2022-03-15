@@ -44,5 +44,9 @@ object Stream extends App:
       case (Cons(head, tail), n) if n > 0 => drop(tail())(n-1)
       case (Cons(head, tail), n) => cons(head(), tail())
       case _ => Empty()
-      
+
     def constant[A](k: A): Stream[A] = cons(k, constant(k))
+
+    def fib(): Stream[Int] =
+      def _fib(acc1: Int, acc2: Int): Stream[Int] = cons(acc2, _fib(acc2, acc1 + acc2))
+      cons(0, _fib(0, 1))
