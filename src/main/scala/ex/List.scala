@@ -45,3 +45,7 @@ object List extends App:
 
     def getCoursesFromPersons(persons: List[Person]): List[String] =
       flatMap(persons){case Teacher(n, c) => Cons(c, Nil()); case _ => Nil()}
+      
+    def foldLeft[A, B](l: List[A])(i: B)(f: (B, A) => B): B = l match
+      case Cons(h, t) => f(foldLeft(t)(i)(f), h)
+      case _ => i

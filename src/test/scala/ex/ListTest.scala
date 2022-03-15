@@ -55,3 +55,8 @@ class ListTest:
     val courses: List[String] = Cons("IT", Cons("PPS", Cons("PCD", Nil())))
     assertEquals(courses, getCoursesFromPersons(persons))
     assertEquals(drop(courses, 1), getCoursesFromPersons(drop(persons, 1)))
+
+  @Test
+  def testFoldLeft(): Unit =
+    assertEquals(-60, foldLeft(l)(0)(_ - _))
+    assertEquals(1, foldLeft(Nil())(1)(_))
