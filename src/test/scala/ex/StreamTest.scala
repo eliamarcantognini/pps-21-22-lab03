@@ -15,3 +15,8 @@ class StreamTest:
   @Test
   def testDrop(): Unit =
     assertEquals(Cons(6, Cons(7, Cons(8, Cons(9, Nil())))), Stream.toList(Stream.drop(s)(6)))
+
+  @Test
+  def testConstant(): Unit =
+    val s1 = Cons("x", Cons("x", Cons("x", Cons("x", Cons("x", Nil())))))
+    assertEquals(s1, Stream.toList(Stream.take(constant("x"))(5)))
